@@ -24,19 +24,18 @@ $db = $database->connect();
 $course = new Course($db);
 
 // // Get raw courseed data
-// $data = json_decode(file_get_contents("php://input"));
+$data = json_decode(file_get_contents("php://input"));
 
-$course->name = $_POST['name'];
-$course->code = $_POST['code'];
-$course->progression = $_POST['progression'];
-$course->syllabus = $_POST['syllabus'];
+$course->name = $data->name;
+$course->code = $data->code;
+$course->progression = $data->progression;
+$course->syllabus = $data->syllabus;
 
 // Create course
 if ($course->create()) {
     echo json_encode(
         array(
             'message' => 'Course Created',
-            // 'id' => $course->id,
             'name' => $course->name,
             'code' => $course->code,
             'progression' => $course->progression,

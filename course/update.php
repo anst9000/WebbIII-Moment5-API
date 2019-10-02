@@ -24,14 +24,14 @@ $db = $database->connect();
 $course = new Course($db);
 
 // Get raw courseed data
-// $data = json_decode(file_get_contents("php://input"));
+$data = json_decode(file_get_contents("php://input"));
 
 // Set ID to update
-$course->id = $_POST['id'];
-$course->name = $_POST['name'];
-$course->code = $_POST['code'];
-$course->progression = $_POST['progression'];
-$course->syllabus = $_POST['syllabus'];
+$course->id = $data->id;
+$course->name = $data->name;
+$course->code = $data->code;
+$course->progression = $data->progression;
+$course->syllabus = $data->syllabus;
 
 // Update course
 if ($course->update()) {

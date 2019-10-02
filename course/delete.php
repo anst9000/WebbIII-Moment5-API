@@ -24,12 +24,12 @@ $db = $database->connect();
 $course = new Course($db);
 
 // Get raw courseed data
-// $data = json_decode(file_get_contents("php://input"));
+$data = json_decode(file_get_contents("php://input"));
 
 // Set ID to update
-// $course->id = $data->id;
+$course->id = $data->id;
 // $course->id = isset($_GET['id']) ? $_GET['id'] : die();
-$course->id = $_POST['id'];
+// $course->id = $_POST['id'];
 
 // Delete course
 if ($course->delete()) {
