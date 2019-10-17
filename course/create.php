@@ -25,25 +25,28 @@ $course = new Course($db);
 
 // // Get raw courseed data
 $data = json_decode(file_get_contents("php://input"));
+$method = $_SERVER['REQUEST_METHOD'];
 
-$course->name = $data->name;
-$course->code = $data->code;
-$course->progression = $data->progression;
-$course->syllabus = $data->syllabus;
+if ($method == "POST") {
+    $course->name = $data->name;
+    $course->code = $data->code;
+    $course->progression = $data->progression;
+    $course->syllabus = $data->syllabus;
 
-// Create course
-if ($course->create()) {
-    echo json_encode(
-        array(
-            'message' => 'Course Created',
-            'name' => $course->name,
-            'code' => $course->code,
-            'progression' => $course->progression,
-            'syllabus' => $course->syllabus,
-        )
-    );
-} else {
-    echo json_encode(
-        array('message' => 'Course Not Created')
-    );
+    // Create course
+    if ($course->create()) {
+        echo json_encode(
+            array(
+                'message' => 'Course Created',
+                'name' => $course->name,
+                'code' => $course->code,
+                'progression' => $course->progression,
+                'syllabus' => $course->syllabus,
+            )
+        );
+    } else {
+        echo json_encode(
+            array('message' => 'Course Not Created')
+        );
+    }
 }

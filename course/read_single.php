@@ -22,10 +22,10 @@ $db = $database->connect();
 $course = new Course($db);
 
 // Get ID
-// $course->id = isset($_GET['id']) ? $_GET['id'] : die();
+$course->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 // Set ID to update
-$course->id = $_POST['id'];
+// $course->id = $_POST['id'];
 
 // Get course
 if ($course->read_single()) {
